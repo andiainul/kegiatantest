@@ -31,14 +31,20 @@
       padding: 2rem 1rem;
     }
 
+    .portal-container {
+      max-width: 580px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     .portal-card {
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.8);
       border-radius: 24px;
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-      max-width: 580px;
-      width: 100%;
       overflow: hidden;
     }
 
@@ -180,72 +186,141 @@
       transform: translateX(4px);
     }
 
-    .portal-footer {
-      background-color: #f8fafc;
-      padding: 1.25rem 2rem;
-      border-top: 1px solid #f1f5f9;
-      text-align: center;
-      font-size: 0.875rem;
-    }
-
-    .fix-link {
-      color: var(--kpu-red);
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    /* Class untuk tombol yang dinonaktifkan jika link belum ada */
     .action-btn.disabled {
       opacity: 0.5;
       pointer-events: none;
       background-color: #f1f5f9;
     }
+
+    /* Styling Kartu Perbaikan Sertifikat (Sesuai Gambar) */
+    .correction-card {
+      background: #111827;
+      color: #ffffff;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .correction-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #10b981, #3b82f6);
+    }
+
+    .correction-badge {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .correction-input {
+      background-color: #1f2937 !important;
+      border: 1px solid #374151 !important;
+      color: #ffffff !important;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    .correction-input:focus {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+    }
+
+    .correction-input::placeholder {
+      color: #6b7280;
+    }
+
+    .btn-search-data {
+      background-color: #3b82f6;
+      border: none;
+      color: white;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-search-data:hover {
+      background-color: #2563eb;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
   </style>
 </head>
 <body>
 
-  <div class="portal-card">
-    <header class="portal-header d-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center gap-3">
-        <div class="brand-logo">
-          <i data-lucide="vote" style="width: 24px; height: 24px;"></i>
+  <div class="portal-container">
+    <!-- Main Portal Card -->
+    <div class="portal-card">
+      <header class="portal-header d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center gap-3">
+          <div class="brand-logo">
+            <i data-lucide="vote" style="width: 24px; height: 24px;"></i>
+          </div>
+          <div>
+            <p class="text-muted mb-0 fw-semibold" style="font-size: 0.8rem;">KPU KABUPATEN BUTON SELATAN</p>
+            <h1 class="h5 mb-0 fw-bold">Portal Kegiatan</h1>
+          </div>
         </div>
-        <div>
-          <p class="text-muted mb-0 fw-semibold" style="font-size: 0.8rem;">KPU KABUPATEN BUTON SELATAN</p>
-          <h1 class="h5 mb-0 fw-bold">Portal Kegiatan</h1>
+        <span class="series-badge" id="badge-series">Bedah Buku · Seri 2</span>
+      </header>
+
+      <section class="main-event-box">
+        <span class="category-tag" id="event-category">Bedah Buku</span>
+        <h2 class="h4 fw-bold mb-3" id="event-title">Teknik Alokasi Suara<br>Menjadi Kursi di Parlemen</h2>
+        <div class="d-flex align-items-center gap-2 text-white-50 fs-7">
+          <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--kpu-gold);"></i>
+          <span id="event-date">Rabu, 21 Oktober 2026 &nbsp;·&nbsp; 09.00 WITA</span>
         </div>
-      </div>
-      <span class="series-badge" id="badge-series">Bedah Buku · Seri 2</span>
-    </header>
+      </section>
 
-    <section class="main-event-box">
-      <span class="category-tag" id="event-category">Bedah Buku</span>
-      <h2 class="h4 fw-bold mb-3" id="event-title">Teknik Alokasi Suara<br>Menjadi Kursi di Parlemen</h2>
-      <div class="d-flex align-items-center gap-2 text-white-50 fs-7">
-        <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--kpu-gold);"></i>
-        <span id="event-date">Rabu, 21 Oktober 2026 &nbsp;·&nbsp; 09.00 WITA</span>
+      <div class="status-alert">
+        <span class="status-pulse"></span>
+        <span id="status-text">Kegiatan sudah dimulai — selamat bergabung!</span>
       </div>
-    </section>
 
-    <div class="status-alert">
-      <span class="status-pulse"></span>
-      <span id="status-text">Kegiatan sudah dimulai — selamat bergabung!</span>
+      <!-- Container tombol tautan dinamis -->
+      <nav class="links-container" id="links-wrapper">
+        <!-- Di-generate otomatis via JavaScript -->
+      </nav>
     </div>
 
-    <!-- Container tombol tautan -->
-    <nav class="links-container" id="links-wrapper">
-      <!-- Tombol di-generate otomatis via JS -->
-    </nav>
-
-    <footer class="portal-footer">
-      <span class="text-muted">Ada kesalahan penulisan nama di sertifikat?</span><br class="d-sm-none">
-      <a href="#" id="link-perbaikan" target="_blank" class="fix-link ms-sm-1">Perbaiki data sertifikat &rarr;</a>
-    </footer>
+    <!-- Certificate Correction Card (Sesuai Desain Gambar) -->
+    <div class="correction-card">
+      <div class="correction-badge">Perbaikan Data</div>
+      <h3 class="h5 fw-bold mb-2">Perbaiki Data Sertifikat</h3>
+      <p class="text-muted small mb-4">Salah tulis nama, nomor HP, atau instansi saat mengisi presensi? Cari data Anda dengan email untuk memperbaikinya.</p>
+      
+      <form id="correction-form" onsubmit="handleSearchCorrection(event)">
+        <label class="form-label small fw-semibold text-light mb-2">Alamat Email Terdaftar</label>
+        <div class="row g-2">
+          <div class="col-sm-8">
+            <input type="email" id="search-email" class="form-control correction-input" placeholder="nama@email.com" required>
+          </div>
+          <div class="col-sm-4 d-grid">
+            <button type="submit" class="btn btn-search-data">Cari Data</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script>
     // =========================================================
-    // CONFIGURASI TAUTAN & INFORMASI ACARA (Ubah di sini)
+    // KONFIGURASI TAUTAN & INFORMASI ACARA (Fleksibel & Mudah Diubah)
     // =========================================================
     const EVENT_CONFIG = {
       badge: "Bedah Buku · Seri 2",
@@ -254,7 +329,7 @@
       date: "Rabu, 21 Oktober 2026 · 09.00 WITA",
       status: "Kegiatan sudah dimulai — selamat bergabung!",
       
-      // Daftar Link Direct
+      // Daftar Link Tautan Utama
       links: [
         { label: "DAFTAR HADIR", icon: "pen-tool", url: "https://forms.google.com/example-presensi" },
         { label: "LINK ZOOM", icon: "video", url: "https://zoom.us/j/example-zoom-id" },
@@ -263,24 +338,22 @@
         { label: "SERTIFIKAT", icon: "award", url: "https://drive.google.com/example-sertifikat" }
       ],
       
-      linkPerbaikan: "https://forms.google.com/example-perbaikan-nama"
+      // URL tujuan ketika email pencarian sertifikat disubmit (Bisa diarahkan ke Web App Google Script / Google Form Pencarian)
+      correctionEndpoint: "https://script.google.com/macros/s/example-endpoint/exec"
     };
 
     // =========================================================
-    // LOGIK RENDERING OTOMATIS
+    // RENDER OTOMATIS & HANDLER FORM
     // =========================================================
     function renderPortal() {
-      // 1. Set Info Acara
       document.getElementById('badge-series').innerText = EVENT_CONFIG.badge;
       document.getElementById('event-category').innerText = EVENT_CONFIG.category;
       document.getElementById('event-title').innerHTML = EVENT_CONFIG.title;
       document.getElementById('event-date').innerHTML = EVENT_CONFIG.date;
       document.getElementById('status-text').innerText = EVENT_CONFIG.status;
-      document.getElementById('link-perbaikan').href = EVENT_CONFIG.linkPerbaikan;
 
-      // 2. Render Tombol-Tombol Link
       const wrapper = document.getElementById('links-wrapper');
-      wrapper.innerHTML = ''; // bersihkan kontainer
+      wrapper.innerHTML = '';
 
       EVENT_CONFIG.links.forEach(item => {
         const hasUrl = item.url && item.url.trim() !== "" && item.url !== "#";
@@ -299,11 +372,18 @@
         wrapper.appendChild(btn);
       });
 
-      // Render ulang ikon Lucide
       lucide.createIcons();
     }
 
-    // Jalankan saat dokumen siap
+    function handleSearchCorrection(event) {
+      event.preventDefault();
+      const email = document.getElementById('search-email').value;
+      
+      // Arahkan ke endpoint perbaikan data dengan membawa parameter email
+      const targetUrl = `${EVENT_CONFIG.correctionEndpoint}?email=${encodeURIComponent(email)}`;
+      window.open(targetUrl, '_blank');
+    }
+
     document.addEventListener("DOMContentLoaded", renderPortal);
   </script>
 
