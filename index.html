@@ -4,68 +4,307 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal Kegiatan - KPU Kabupaten Buton Selatan</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --kpu-red: #9e1c1c;
+      --kpu-red-hover: #7d1414;
+      --kpu-dark: #1e293b;
+      --kpu-gold: #d97706;
+      --kpu-bg: #f8fafc;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      color: var(--kpu-dark);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .portal-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+      max-width: 580px;
+      width: 100%;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .portal-header {
+      padding: 2rem 2rem 1.5rem 2rem;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      background: var(--kpu-red);
+      color: #fff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(158, 28, 28, 0.25);
+    }
+
+    .series-badge {
+      background-color: #fef3c7;
+      color: #92400e;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 6px 14px;
+      border-radius: 50rem;
+      letter-spacing: 0.5px;
+      border: 1px solid #fde68a;
+    }
+
+    .main-event-box {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: #ffffff;
+      margin: 1.5rem 2rem;
+      padding: 1.75rem;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+    }
+
+    .main-event-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(217, 119, 6, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+    }
+
+    .category-tag {
+      color: var(--kpu-gold);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .status-alert {
+      background-color: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin: 0 2rem 1.5rem 2rem;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-pulse {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .links-container {
+      padding: 0 2rem 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.25rem;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      color: var(--kpu-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .action-btn:hover {
+      background-color: var(--kpu-red);
+      color: #ffffff;
+      border-color: var(--kpu-red);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(158, 28, 28, 0.15);
+    }
+
+    .btn-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .icon-wrapper {
+      width: 36px;
+      height: 36px;
+      background-color: #f8fafc;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--kpu-red);
+      transition: all 0.25s ease;
+    }
+
+    .action-btn:hover .icon-wrapper {
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+    }
+
+    .arrow-icon {
+      opacity: 0.4;
+      transition: all 0.25s ease;
+    }
+
+    .action-btn:hover .arrow-icon {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    .portal-footer {
+      background-color: #f8fafc;
+      padding: 1.25rem 2rem;
+      border-top: 1px solid #f1f5f9;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    .fix-link {
+      color: var(--kpu-red);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .fix-link:hover {
+      color: var(--kpu-red-hover);
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container">
-    <header class="header">
-      <div class="brand">
-        <div class="logo-placeholder"></div>
-        <div class="brand-text">
-          <p class="sub-title">KPU Kabupaten Buton Selatan</p>
-          <h1 class="main-title">Portal Kegiatan</h1>
+  <div class="portal-card">
+    <!-- Header -->
+    <header class="portal-header d-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center gap-3">
+        <div class="brand-logo">
+          <i data-lucide="vote" style="width: 24px; height: 24px;"></i>
+        </div>
+        <div>
+          <p class="text-muted mb-0 fw-semibold" style="font-size: 0.8rem; letter-spacing: 0.3px;">KPU KABUPATEN BUTON SELATAN</p>
+          <h1 class="h5 mb-0 fw-bold" style="color: var(--kpu-dark);">Portal Kegiatan</h1>
         </div>
       </div>
-      <div class="badge">Bedah Buku · Seri 2</div>
+      <span class="series-badge">Bedah Buku · Seri 2</span>
     </header>
 
-    <main class="main-card">
-      <span class="category">BEDAH BUKU</span>
-      <h2 class="event-title">Teknik Alokasi Suara<br>Menjadi Kursi di Parlemen</h2>
-      <p class="event-date">Rabu, 21 Oktober 2026 · 09.00 WITA</p>
-    </main>
+    <!-- Main Card Event Info -->
+    <section class="main-event-box">
+      <span class="category-tag">Bedah Buku</span>
+      <h2 class="h4 fw-bold mb-3 leading-snug">Teknik Alokasi Suara<br>Menjadi Kursi di Parlemen</h2>
+      <div class="d-flex align-items-center gap-2 text-white-50 fs-7">
+        <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--kpu-gold);"></i>
+        <span>Rabu, 21 Oktober 2026 &nbsp;·&nbsp; 09.00 WITA</span>
+      </div>
+    </section>
 
-    <div class="status-banner">
-      Kegiatan sudah dimulai — selamat bergabung!
+    <!-- Status Banner -->
+    <div class="status-alert">
+      <span class="status-pulse"></span>
+      <span>Kegiatan sudah dimulai — selamat bergabung!</span>
     </div>
 
-    <nav class="links-group">
-      <a href="#" target="_blank" class="link-btn">
-        <div class="icon-box"><i data-lucide="edit-3"></i></div>
-        <span>DAFTAR HADIR</span>
+    <!-- Navigation Links -->
+    <nav class="links-container">
+      <a href="#" target="_blank" class="action-btn">
+        <div class="btn-left">
+          <div class="icon-wrapper"><i data-lucide="pen-tool" style="width: 18px; height: 18px;"></i></div>
+          <span>DAFTAR HADIR</span>
+        </div>
+        <i data-lucide="chevron-right" class="arrow-icon" style="width: 18px; height: 18px;"></i>
       </a>
 
-      <a href="#" target="_blank" class="link-btn">
-        <div class="icon-box"><i data-lucide="video"></i></div>
-        <span>LINK ZOOM</span>
+      <a href="#" target="_blank" class="action-btn">
+        <div class="btn-left">
+          <div class="icon-wrapper"><i data-lucide="video" style="width: 18px; height: 18px;"></i></div>
+          <span>LINK ZOOM</span>
+        </div>
+        <i data-lucide="chevron-right" class="arrow-icon" style="width: 18px; height: 18px;"></i>
       </a>
 
-      <a href="#" target="_blank" class="link-btn">
-        <div class="icon-box"><i data-lucide="image"></i></div>
-        <span>BACKGROUND ZOOM</span>
+      <a href="#" target="_blank" class="action-btn">
+        <div class="btn-left">
+          <div class="icon-wrapper"><i data-lucide="image" style="width: 18px; height: 18px;"></i></div>
+          <span>BACKGROUND ZOOM</span>
+        </div>
+        <i data-lucide="chevron-right" class="arrow-icon" style="width: 18px; height: 18px;"></i>
       </a>
 
-      <a href="#" target="_blank" class="link-btn">
-        <div class="icon-box"><i data-lucide="file-text"></i></div>
-        <span>MATERI</span>
+      <a href="#" target="_blank" class="action-btn">
+        <div class="btn-left">
+          <div class="icon-wrapper"><i data-lucide="file-text" style="width: 18px; height: 18px;"></i></div>
+          <span>MATERI</span>
+        </div>
+        <i data-lucide="chevron-right" class="arrow-icon" style="width: 18px; height: 18px;"></i>
       </a>
 
-      <a href="#" target="_blank" class="link-btn">
-        <div class="icon-box"><i data-lucide="award"></i></div>
-        <span>SERTIFIKAT</span>
+      <a href="#" target="_blank" class="action-btn">
+        <div class="btn-left">
+          <div class="icon-wrapper"><i data-lucide="award" style="width: 18px; height: 18px;"></i></div>
+          <span>SERTIFIKAT</span>
+        </div>
+        <i data-lucide="chevron-right" class="arrow-icon" style="width: 18px; height: 18px;"></i>
       </a>
     </nav>
 
-    <footer class="footer-card">
-      <span>Ada kesalahan penulisan nama di sertifikat?</span>
-      <a href="#" class="fix-link">Perbaiki data sertifikat &rarr;</a>
+    <!-- Footer -->
+    <footer class="portal-footer">
+      <span class="text-muted">Ada kesalahan penulisan nama di sertifikat?</span><br class="d-sm-none">
+      <a href="#" class="fix-link ms-sm-1">Perbaiki data sertifikat &rarr;</a>
     </footer>
   </div>
 
+  <!-- Lucide Icon Init -->
   <script>
     lucide.createIcons();
   </script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
